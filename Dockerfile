@@ -1,22 +1,21 @@
-#It will use node:19-alpine3.16 as the parent image for building the Docker image
-FROM node:19-alpine3.16
+# Use Ubuntu Server as the base image
+FROM ubuntu:latest
 
-#It will create a working directory for Docker. The Docker image will be created in this working directory.
-WORKDIR /react-app
+# Update packages and install Nginx
+RUN apt-get update && apt-get install -y nginx
 
-#Copy the React.js application dependencies from the package.json to the react-app working directory.
+# Remove the default Nginx configuration file
+RUN rm /etc/nginx/sites-enabled/default
 
-COPY package.json .
-COPY package-lock.json .
+# Copy the Nginx configuration file to the container
+COPY nginx.conf /etc/nginx/conf.d/
 
-#install all the React.js application dependencies
+# Copy all HTML files from the host to the container
+COPY html/ /var/www/html/
 
-RUN npm i
-<!-- Copy the remaining React.js application folders and files from the `jenkins-kubernetes-deployment` local folder to the Docker react-app working directory -->
-COPY . .
+# Expose port 80 for HTTP traffic
+EXPOSE 80
+EXPOSE 443
 
-#Expose the React.js application container on port 3000
-EXPOSE 3000
-
-#The command to start the React.js application container
-CMD ["npm", "start"]
+# Start Nginx when the container is launched
+CMD ["nginx", "-g", "daemon off;"]
