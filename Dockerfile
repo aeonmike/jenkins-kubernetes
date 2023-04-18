@@ -2,7 +2,9 @@
 FROM ubuntu:latest
 
 # Update packages and install Nginx
-RUN apt-get update && apt-get install -y nginx
+RUN apt-get update && \
+    apt-get install -y nginx certbot python3-certbot-nginx && \
+    rm -rf /var/lib/apt/lists/*
 
 # Remove the default Nginx configuration file
 RUN rm /etc/nginx/sites-enabled/default
