@@ -2,8 +2,8 @@
 FROM ubuntu:latest
 
 # Update packages and install Nginx
-RUN apt-get update && \
-    apt-get install -y nginx certbot python3-certbot-nginx 
+RUN apt-get update 
+RUN apt-get install -y nginx certbot python3-certbot-nginx
 
 # Remove the default Nginx configuration file
 
