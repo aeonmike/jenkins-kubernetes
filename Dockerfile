@@ -3,11 +3,13 @@ FROM ubuntu:latest
 
 # Update packages and install Nginx
 RUN apt-get update && \
-    apt-get install -y nginx certbot python3-certbot-nginx && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y nginx certbot python3-certbot-nginx 
 
 # Remove the default Nginx configuration file
+
 RUN rm /etc/nginx/sites-enabled/default
+
+RUN rm -rf /var/lib/apt/lists/*
 
 # Copy the Nginx configuration file to the container
 COPY nginx.conf /etc/nginx/conf.d/
