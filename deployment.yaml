@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: my-nginx-container
-          image: mikejc30/my-nginx-image:latest
+          image: mikejc30/jenkins-nginx:latest
           ports:
             - containerPort: 80
