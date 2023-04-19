@@ -1,32 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: my-nginx-deployment
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: jenkins-nginx
+      app: my-nginx-app
+  replicas: 1
   template:
     metadata:
       labels:
-        app: jenkins-nginx
+        app: my-nginx-app
     spec:
       containers:
         - name: my-nginx-container
-          image: mikejc30/jenkins-nginx:latest
+          image: mikejc30/my-nginx-image:latest
           ports:
             - containerPort: 80
-            - containerPort: 443
-          volumeMounts:
-            - name: ssl-certs
-              mountPath: /etc/ssl/certs
-            - name: ssl-keys
-              mountPath: /etc/ssl/private
-      volumes:
-        - name: ssl-certs
-          secret:
-            secretName: ssl-certs
-        - name: ssl-keys
-          secret:
-            secretName: ssl-keys	     
