@@ -1,8 +1,8 @@
 # Use Ubuntu Server as the base image
-FROM ubuntu:latest
+FROM ubuntu
 
 # Update the package list and install Nginx
-RUN apt install nginx -y
+RUN apt-get -y update && apt-get -y install nginx
 
 # Remove the default Nginx configuration file
 
@@ -18,4 +18,4 @@ COPY html/ /var/www/html/
 EXPOSE 80
 
 # Start Nginx when the container is launched
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
