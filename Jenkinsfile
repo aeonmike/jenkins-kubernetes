@@ -30,7 +30,7 @@ pipeline {
             steps {
               script {
                withKubeConfig(credentialsId: 'kubeconfig'){
-                  sh "kubectl apply -f deployment.yaml"
+                  sh "kubectl apply -f deployment.yaml -f service.yaml"
                 }
               }
             }
