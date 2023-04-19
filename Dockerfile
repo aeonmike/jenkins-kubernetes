@@ -11,6 +11,7 @@ RUN apt-get update && \
 
 ADD nginx.conf /etc/nginx/
 ADD server.conf /etc/nginx/conf.d
+COPY html /var/www/html
 
 EXPOSE 443 80
 
