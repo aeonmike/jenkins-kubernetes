@@ -7,7 +7,7 @@ RUN apt-get update && \
 RUN curl http://nginx.org/keys/nginx_signing.key | apt-key add -
 
 RUN apt-get update && \
-    apt-get install -y -q nginx
+    apt-get install -y -q nginx certbot python3-certbot-nginx
 
 ADD nginx.conf /etc/nginx/
 ADD server.conf /etc/nginx/conf.d
