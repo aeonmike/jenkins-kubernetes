@@ -1,21 +1,18 @@
-# Use Ubuntu Server as the base image
-FROM ubuntu
+FROM ubuntu:20.04
 
-# Update the package list and install Nginx
-RUN apt-get -y update && apt-get -y install nginx
+LABEL maintainer="mike.cabalin@gmail.com"
 
-# Remove the default Nginx configuration file
+RUN apt-get update && \
+    apt-get install -y -q curl gnupg2
+RUN curl http://nginx.org/keys/nginx_signing.key | apt-key add -
 
-RUN rm /etc/nginx/sites-enabled/default
+RUN apt-get update && \
+    apt-get install -y -q nginx
 
-# Copy the Nginx configuration file to the container
-COPY nginx.conf /etc/nginx/conf.d/
+ADD nginx.conf /etc/nginx/
+ADD server.conf /etc/nginx/conf.d
 
-# Copy all HTML files from the host to the container
-COPY html/ /var/www/html/
+EXPOSE 443 80
 
-# Expose port 80 for HTTP traffic
-EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
 
-# Start Nginx when the container is launched
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
