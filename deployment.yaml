@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-nginx-deployment
+  name: jenkins-kube-deployment
 spec:
   selector:
     matchLabels:
@@ -16,6 +16,6 @@ spec:
         - name: mydockerhub
       containers:
         - name: my-nginx-container
-          image: mikejc30/jenkins-nginx:latest
+          image: mikejc30/jenkins-kube:latest
           ports:
             - containerPort: 80
