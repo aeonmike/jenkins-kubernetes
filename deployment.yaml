@@ -12,6 +12,8 @@ spec:
       labels:
         app: my-nginx-app
     spec:
+      imagePullSecrets:
+        - name: mydockerhub
       containers:
         - name: my-nginx-container
           image: mikejc30/jenkins-nginx:latest
