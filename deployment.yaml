@@ -16,6 +16,6 @@ spec:
         - name: mydockerhub
       containers:
         - name: my-nginx-container
-          image: mikejc30/jenkins-kube:latest
+          image: mikejc30/kube:latest
           ports:
             - containerPort: 80
