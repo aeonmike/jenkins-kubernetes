@@ -23,7 +23,7 @@ pipeline {
     }
        stage('Push') {
       steps {
-        sh 'docker push mikejc30/jenkins-kube:latest'
+        sh 'docker push mikejc30/kube:latest'
       }
     }
         stage('Deploy') {
