@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t mikejc30/kube:latest .'
+                sh 'docker build -t mikejc30/k8:latest .'
             }
         }
       
@@ -23,7 +23,7 @@ pipeline {
     }
        stage('Push') {
       steps {
-        sh 'docker push mikejc30/kube:latest'
+        sh 'docker push mikejc30/k8:latest'
       }
     }
         stage('Deploy') {
