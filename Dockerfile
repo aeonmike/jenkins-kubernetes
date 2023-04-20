@@ -1,17 +1,15 @@
-FROM ubuntu:20.04
+FROM nginx
 
 LABEL maintainer="mike.cabalin@gmail.com"
 
-RUN apt-get update && \
-    apt-get install -y -q curl gnupg2
-RUN curl http://nginx.org/keys/nginx_signing.key | apt-key add -
+RUN rm /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY html /usr/share/nginx/html
 
-RUN apt-get update && \
-    apt-get install -y -q nginx  
+COPY nginx.conf /etc/nginx/
+COPY server.conf /etc/nginx/conf.d/
 
-ADD nginx.conf /etc/nginx/
-ADD server.conf /etc/nginx/conf.d
-COPY html /var/www/html
+VOLUME /usr/share/nginx/html
+VOLUME /etc/nginx
 
 EXPOSE 80
 
