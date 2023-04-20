@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jenkins-kube-deployment
+  name: k8
 spec:
   selector:
     matchLabels:
-      app: my-nginx-app
+      app: nginx-app
   replicas: 1
   template:
     metadata:
       labels:
-        app: my-nginx-app
+        app: nginx-app
     spec:
       imagePullSecrets:
         - name: mydockerhub
       containers:
-        - name: my-nginx-container
-          image: mikejc30/kube:latest
+        - name: nginx-container
+          image: mikejc30/k8:latest
           ports:
             - containerPort: 80
