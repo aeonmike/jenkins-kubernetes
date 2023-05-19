@@ -29,11 +29,10 @@ pipeline {
         stage('Deploy') {
             steps {
               script {
-               withKubeConfig(credentialsId: 'kubeconfig'){
-                  sh "kubectl apply -f service.yaml -f deployment.yaml"
+                   sh "kubectl apply -f service.yaml -f deployment.yaml"
                 }
               }
             }
         }
     }
-}
+
